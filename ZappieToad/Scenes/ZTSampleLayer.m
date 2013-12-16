@@ -8,6 +8,7 @@
 
 #import "ZTSampleLayer.h"
 #import "ZTFrog.h"
+#import "ZTGrid.h"
 
 @implementation ZTSampleLayer
 
@@ -38,6 +39,9 @@
     CCSequence *sequene = [CCSequence actions:move1, move2, nil];
     CCRepeatForever *repeat = [CCRepeatForever actionWithAction:sequene];
     [sprite runAction:repeat];
+    
+    CCRotateBy *rotate = [CCRotateBy actionWithDuration:2.0 angle:300];
+    [sprite runAction:[CCRepeatForever actionWithAction:rotate]];
 
     self.frog = [[ZTFrog alloc] init];
     self.frog.position = CGPointMake(240, 160);
@@ -45,6 +49,10 @@
 
     [self scheduleOnce:@selector(jump) delay:3.0];
 
+    ZTGrid *grid = [ZTGrid node];
+    grid.position = CGPointMake(0,0);
+    [self addChild:grid];
+    
     return self;
 }
 
