@@ -32,8 +32,6 @@
     sprite.position = CGPointMake(240, 160);
     [self addChild:sprite];
 
-    sprite.visible = false;
-
     CCFiniteTimeAction *move1 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(40, 160)];
     CCFiniteTimeAction *move2 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(440, 160)];
     CCSequence *sequene = [CCSequence actions:move1, move2, nil];
@@ -44,7 +42,7 @@
     [sprite runAction:[CCRepeatForever actionWithAction:rotate]];
 
     self.frog = [[ZTFrog alloc] init];
-    self.frog.position = CGPointMake(240, 160);
+    self.frog.position = CGPointMake(200, 120);
     [self addChild:self.frog];
 
     [self scheduleOnce:@selector(jump) delay:3.0];
@@ -56,14 +54,43 @@
     return self;
 }
 
+- (void)onEnter
+{
+    [super onEnter];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1000 swallowsTouches:true];
+}
+
+-(void)onExit
+{
+    [super onExit];
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+}
+
 - (void)jump
 {
-    [self.frog jumpInDirection:kZTDirectionLeft];
+    [self.frog moveToX:16 andY:6];
 }
 
 - (void)dealloc
 {
     
+}
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CGPoint point = [touch locationInView:touch.view];
+    point = [[CCDirector sharedDirector] convertToGL:point];
+
+    CCSprite *sprite = [CCSprite spriteWithFile:@"frog_v2.png"];
+    sprite.position = point;
+    [self addChild:sprite];
+    CCLOG(@"%f; %f;", sprite.position.x, sprite.position.y);
+    return false;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    return;
 }
 
 @end

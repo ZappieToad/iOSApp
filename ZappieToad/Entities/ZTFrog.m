@@ -8,7 +8,45 @@
 
 #import "ZTFrog.h"
 
+@interface ZTFrogJump : NSObject
+@property (nonatomic, assign) ZTDirection direction;
+@property (nonatomic, retain) ZTFrog *frog;
+@property (nonatomic, retain) ZTFrogJump *next;
+- (id)initWithDirection:(ZTDirection) direction andFrog:(ZTFrog *)frog;;
+@end
+
+@implementation ZTFrogJump
+- (id)initWithDirection:(ZTDirection) direction andFrog:(ZTFrog *)frog
+{
+    if ((self = [super init]) == nil) {
+        return nil;
+    }
+    
+    self.direction = direction;
+    self.frog = frog;
+    self.next = nil;
+
+    return self;
+}
+
+- (void)execute
+{
+    [self.frog jumpInDirection:self.direction];
+    [self performSelector:@selector(nextExecute) withObject:nil afterDelay:0.3];
+}
+
+- (void)nextExecute
+{
+    if (self.next != nil) {
+        [self.next execute];
+    }
+}
+
+@end
+
 @implementation ZTFrog
+
+const float g_fJumpSize = 22.0;
 
 - (id)init
 {
@@ -30,8 +68,41 @@
 
     float targetX = [self worldXForGridX:gridX];
     float targetY = [self worldYForGridY:gridY];
-    
+
     // Path find way to target
+    float x = self.position.x;
+    float y = self.position.y;
+
+    int jumpsX = fabs((x - targetX) / g_fJumpSize);
+    int jumpsY = fabs((y - targetY) / g_fJumpSize);
+    int parity = 0;
+
+    ZTFrogJump *prev = nil;
+    ZTFrogJump *root = nil;
+    while (jumpsX || jumpsY) {
+        ZTDirection direction;
+        if ((parity % 2 == 0 && jumpsX != 0) || jumpsY == 0) {
+            jumpsX --;
+            direction = kZTDirectionRight;
+        }
+        else {
+            jumpsY --;
+            direction = kZTDirectionUp;
+        }
+
+        ZTFrogJump *jump = [[ZTFrogJump alloc] initWithDirection:direction andFrog:self];
+        if (prev != nil) {
+            prev.next = jump;
+        }
+        if (root == nil) {
+            root = jump;
+        }
+        prev = jump;
+
+        parity ++;
+    }
+    
+    [root execute];
 }
 
 - (void)jumpInDirection:(ZTDirection)direction
@@ -83,17 +154,17 @@
 
 - (bool)canMoveToX:(int)x andY:(int)y
 {
-    return false;
+    return true;
 }
 
 - (float)worldXForGridX:(int)gridX
 {
-    return 0.0;
+    return gridX * g_fJumpSize;
 }
 
 - (float)worldYForGridY:(int)gridY
 {
-    return 0.0;
+    return gridY * g_fJumpSize;
 }
 
 @end

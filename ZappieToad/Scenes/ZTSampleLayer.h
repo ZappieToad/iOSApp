@@ -10,7 +10,7 @@
 
 @class ZTFrog;
 
-@interface ZTSampleLayer : CCLayer
+@interface ZTSampleLayer : CCLayer <CCTouchOneByOneDelegate>
 
 @property (nonatomic, retain) ZTFrog *frog;
 
