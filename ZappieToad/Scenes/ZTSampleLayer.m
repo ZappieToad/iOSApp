@@ -51,7 +51,7 @@
     
     ZTFrogTongue *tongue = [[ZTFrogTongue alloc] init];
     tongue.position = ccp(self.frog.position.x, self.frog.position.y + 10);
-    tongue.direction = kZTDirectionLeft;
+    tongue.direction = kZTDirectionRight;
     tongue.speed = 0.5;
     [self addChild:tongue];
     [tongue fire];
