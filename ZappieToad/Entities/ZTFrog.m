@@ -131,7 +131,7 @@ const float g_fJumpSize = 22.0;
             break;
     }
 
-    float jumpSize = 20.0;
+    float jumpSize = 22.0;
     CGPoint jumpPoint = CGPointMake(x * jumpSize, y * jumpSize);
 
     CCMoveBy *moveBy = [CCMoveBy actionWithDuration:0.25 position:jumpPoint];

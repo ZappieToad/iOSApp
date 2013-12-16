@@ -49,7 +49,7 @@
     self.frog.position = [grid returnHomeBoundsPoint];// CGPointMake(240, 160);
     [self addChild:self.frog];
 
-    [self scheduleOnce:@selector(jump) delay:3.0];
+//    [self scheduleOnce:@selector(jump) delay:3.0];
     
     return self;
 }
@@ -81,16 +81,54 @@
     CGPoint point = [touch locationInView:touch.view];
     point = [[CCDirector sharedDirector] convertToGL:point];
 
-    CCSprite *sprite = [CCSprite spriteWithFile:@"frog_v2.png"];
-    sprite.position = point;
-    [self addChild:sprite];
-    CCLOG(@"%f; %f;", sprite.position.x, sprite.position.y);
+//    CCSprite *sprite = [CCSprite spriteWithFile:@"frog_v2.png"];
+  //  sprite.position = point;
+    //[self addChild:sprite];
+    //CCLOG(@"%f; %f;", sprite.position.x, sprite.position.y);
+    
+    // Check and move appropriately
+    [self checkTouchAndMove:point];
+    
     return false;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    // Get the point on release
+    CGPoint point = [touch locationInView:touch.view];
+    point = [[CCDirector sharedDirector] convertToGL:point];
+    
+    CGPoint target;
+    ZTDirection dir;// = [ZTDirection ];
+    dir = kZTDirectionLeft;
+    if (point.x < 200) { [self.frog jumpInDirection:dir]; }//target = [grid TryLeft]; }
+    
     return;
 }
 
+-(void)checkTouchAndMove:(CGPoint) point
+{
+    ZTDirection dir;
+    
+    if (point.y < 100)
+    {
+        dir = kZTDirectionDown;
+        [self.frog jumpInDirection:dir];
+    }
+    else if (point.y > 200)
+    {
+        dir = kZTDirectionUp;
+        [self.frog jumpInDirection:dir];
+    }
+    else if (point.x < 180)
+    {
+        dir = kZTDirectionLeft;
+        [self.frog jumpInDirection:dir];
+    }
+    else if (point.x > 280)
+    {
+        dir = kZTDirectionRight;
+        [self.frog jumpInDirection:dir];
+    }
+}
 @end

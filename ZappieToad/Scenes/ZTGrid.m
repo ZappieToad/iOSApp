@@ -52,9 +52,13 @@
                 {
                     intersection.sprite.color = ccRED;
                     
+                    // FIgure out the possible transition positions
+                    if (y==5) { intersection.upPossible = false; }
+                    if (y==8) { intersection.downPossible = false; }
+                    if (x==8) { intersection.leftPossible = false; }
+                    if (x==11){ intersection.rightPossible= false; }
+                    
                     // This is also where I add to the list of possible positions
-                 //   ZTGridPoint *point = [[ZTGridPoint alloc] init];
-                   // point.point = CGPointMake(0, 0);
                     [self.homeBounds addObject:intersection];
                 }
                 else {
@@ -80,6 +84,14 @@
     }
     
     return self;
+}
+
+
+-(CGPoint)tryAndReturnTargetMove
+{
+    int index = arc4random() % self.homeBounds.count;
+    ZTGridIntersectPoint *point = self.homeBounds[index];
+    return point.position;
 }
 
 -(CGPoint)returnHomeBoundsPoint

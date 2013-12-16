@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSMutableArray *lowerBounds;
 
 -(CGPoint)returnHomeBoundsPoint;
+- (bool)getGridIndicesForPoint:(CGPoint)point outX:(out float)x outY:(out float)y;
 
 @end

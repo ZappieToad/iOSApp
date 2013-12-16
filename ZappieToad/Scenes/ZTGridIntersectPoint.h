@@ -12,5 +12,9 @@
 @interface ZTGridIntersectPoint : CCNode
 // Property
 @property (nonatomic, retain) CCSprite *sprite;
+@property (nonatomic, readwrite) bool upPossible;
+@property (nonatomic, readwrite) bool downPossible;
+@property (nonatomic, readwrite) bool leftPossible;
+@property (nonatomic, readwrite) bool rightPossible;
 
 @end
