@@ -7,6 +7,7 @@
 //
 
 #import "ZTSampleLayer.h"
+#import "ZTFrog.h"
 
 @implementation ZTSampleLayer
 
@@ -29,14 +30,27 @@
     CCSprite *sprite = [CCSprite spriteWithFile:@"Icon.png"];
     sprite.position = CGPointMake(240, 160);
     [self addChild:sprite];
-    
+
+    sprite.visible = false;
+
     CCFiniteTimeAction *move1 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(40, 160)];
     CCFiniteTimeAction *move2 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(440, 160)];
     CCSequence *sequene = [CCSequence actions:move1, move2, nil];
     CCRepeatForever *repeat = [CCRepeatForever actionWithAction:sequene];
     [sprite runAction:repeat];
 
+    self.frog = [[ZTFrog alloc] init];
+    self.frog.position = CGPointMake(240, 160);
+    [self addChild:self.frog];
+
+    [self scheduleOnce:@selector(jump) delay:3.0];
+
     return self;
+}
+
+- (void)jump
+{
+    [self.frog jumpInDirection:kZTDirectionLeft];
 }
 
 - (void)dealloc

@@ -8,7 +8,11 @@
 
 #import "cocos2d.h"
 
+@class ZTFrog;
+
 @interface ZTSampleLayer : CCLayer
+
+@property (nonatomic, retain) ZTFrog *frog;
 
 + (CCScene *)scene;
 
