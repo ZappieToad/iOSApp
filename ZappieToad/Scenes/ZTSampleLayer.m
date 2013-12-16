@@ -32,7 +32,7 @@
     sprite.position = CGPointMake(240, 160);
     [self addChild:sprite];
 
-    sprite.visible = false;
+    sprite.visible = true;
 
     CCFiniteTimeAction *move1 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(40, 160)];
     CCFiniteTimeAction *move2 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(440, 160)];
@@ -43,15 +43,14 @@
     CCRotateBy *rotate = [CCRotateBy actionWithDuration:2.0 angle:300];
     [sprite runAction:[CCRepeatForever actionWithAction:rotate]];
 
+    ZTGrid *grid = [ZTGrid node];
+    [self addChild:grid];
+
     self.frog = [[ZTFrog alloc] init];
-    self.frog.position = CGPointMake(240, 160);
+    self.frog.position = [grid returnHomeBoundsPoint];// CGPointMake(240, 160);
     [self addChild:self.frog];
 
     [self scheduleOnce:@selector(jump) delay:3.0];
-
-    ZTGrid *grid = [ZTGrid node];
-    grid.position = CGPointMake(0,0);
-    [self addChild:grid];
     
     return self;
 }
