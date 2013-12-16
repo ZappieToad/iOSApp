@@ -75,8 +75,6 @@
 			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 			
 			[[app navController] presentModalViewController:achivementViewController animated:YES];
-			
-			[achivementViewController release];
 		}];
 		
 		// Leaderboard Menu Item using blocks
@@ -89,8 +87,6 @@
 			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
 			
 			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
-			
-			[leaderboardViewController release];
 		}];
 
 		
@@ -112,9 +108,6 @@
 	// in case you have something to dealloc, do it in this method
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
-	[super dealloc];
 }
 
 #pragma mark GameKit delegate

@@ -1241,6 +1241,7 @@
 				A1692ABD185E895B00D2A8E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A1692ABE185E895B00D2A8E5 /* Build configuration list for PBXNativeTarget "Cocos2DTests" */ = {
 			isa = XCConfigurationList;
@@ -1249,6 +1250,7 @@
 				A1692AC0185E895B00D2A8E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
