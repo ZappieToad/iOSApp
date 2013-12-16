@@ -7,14 +7,7 @@
 //
 
 #import "cocos2d.h"
-
-typedef enum {
-    kZTDirectionUp = 0,
-    kZTDirectionLeft = 1,
-    kZTDirectionDown = 2,
-    kZTDirectionRight = 3,
-    kZTDirectionUnknown,
-} ZTDirection;
+#import "ZTFrogDefinitions.h"
 
 @interface ZTFrog : CCNode {
     CCSprite       *m_oSprite;

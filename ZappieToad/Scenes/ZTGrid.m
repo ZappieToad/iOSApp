@@ -73,12 +73,12 @@
                         [self.lowerBounds addObject:intersection];
                     }
                 }
-                
+
                 [self addChild:intersection];
             }
         }
     }
-    
+
     return self;
 }
 

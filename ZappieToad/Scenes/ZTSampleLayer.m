@@ -9,6 +9,7 @@
 #import "ZTSampleLayer.h"
 #import "ZTFrog.h"
 #import "ZTGrid.h"
+#import "ZTFrogTongue.h"
 
 @implementation ZTSampleLayer
 
@@ -28,29 +29,35 @@
         return nil;
     }
 
-    CCSprite *sprite = [CCSprite spriteWithFile:@"Icon.png"];
-    sprite.position = CGPointMake(240, 160);
-    [self addChild:sprite];
-
-    CCFiniteTimeAction *move1 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(40, 160)];
-    CCFiniteTimeAction *move2 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(440, 160)];
-    CCSequence *sequene = [CCSequence actions:move1, move2, nil];
-    CCRepeatForever *repeat = [CCRepeatForever actionWithAction:sequene];
-    [sprite runAction:repeat];
-    
-    CCRotateBy *rotate = [CCRotateBy actionWithDuration:2.0 angle:300];
-    [sprite runAction:[CCRepeatForever actionWithAction:rotate]];
+//    CCSprite *sprite = [CCSprite spriteWithFile:@"Icon.png"];
+//    sprite.position = CGPointMake(240, 160);
+//    [self addChild:sprite];
+//
+//    CCFiniteTimeAction *move1 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(40, 160)];
+//    CCFiniteTimeAction *move2 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(440, 160)];
+//    CCSequence *sequene = [CCSequence actions:move1, move2, nil];
+//    CCRepeatForever *repeat = [CCRepeatForever actionWithAction:sequene];
+//    [sprite runAction:repeat];
+//
+//    CCRotateBy *rotate = [CCRotateBy actionWithDuration:2.0 angle:300];
+//    [sprite runAction:[CCRepeatForever actionWithAction:rotate]];
 
     ZTGrid *grid = [ZTGrid node];
-    [self addChild:grid];
+//    [self addChild:grid];
 
     self.frog = [[ZTFrog alloc] init];
-//    self.frog.position = CGPointMake(200, 120);
     self.frog.position = [grid returnHomeBoundsPoint];// CGPointMake(240, 160);
     [self addChild:self.frog];
+    
+    ZTFrogTongue *tongue = [[ZTFrogTongue alloc] init];
+    tongue.position = ccp(self.frog.position.x, self.frog.position.y + 10);
+    tongue.direction = kZTDirectionLeft;
+    tongue.speed = 0.5;
+    [self addChild:tongue];
+    [tongue fire];
 
     [self scheduleOnce:@selector(jump) delay:3.0];
-    
+
     return self;
 }
 
