@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		77D28E42185EB1680096A0D6 /* ZTGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D28E41185EB1680096A0D6 /* ZTGrid.m */; };
 		77D28E45185EB1F10096A0D6 /* ZTGridIntersectPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D28E44185EB1F10096A0D6 /* ZTGridIntersectPoint.m */; };
+		A1361ED8185ECAD8005A3600 /* ZTFrog.m in Sources */ = {isa = PBXBuildFile; fileRef = A1361ED7185ECAD8005A3600 /* ZTFrog.m */; };
+		A1361EE3185ECB01005A3600 /* frog_v2-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A1361EE1185ECB01005A3600 /* frog_v2-hd.png */; };
+		A1361EE4185ECB01005A3600 /* frog_v2.png in Resources */ = {isa = PBXBuildFile; fileRef = A1361EE2185ECB01005A3600 /* frog_v2.png */; };
 		A16928DD185E88E400D2A8E5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16928DC185E88E400D2A8E5 /* QuartzCore.framework */; };
 		A16928DF185E88E400D2A8E5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16928DE185E88E400D2A8E5 /* OpenGLES.framework */; };
 		A16928E1185E88E400D2A8E5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16928E0185E88E400D2A8E5 /* OpenAL.framework */; };
@@ -60,6 +63,10 @@
 		77D28E41185EB1680096A0D6 /* ZTGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTGrid.m; sourceTree = "<group>"; };
 		77D28E43185EB1E20096A0D6 /* ZTGridIntersectPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTGridIntersectPoint.h; sourceTree = "<group>"; };
 		77D28E44185EB1F10096A0D6 /* ZTGridIntersectPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTGridIntersectPoint.m; sourceTree = "<group>"; };
+		A1361ED6185ECAD8005A3600 /* ZTFrog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTFrog.h; sourceTree = "<group>"; };
+		A1361ED7185ECAD8005A3600 /* ZTFrog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTFrog.m; sourceTree = "<group>"; };
+		A1361EE1185ECB01005A3600 /* frog_v2-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "frog_v2-hd.png"; sourceTree = "<group>"; };
+		A1361EE2185ECB01005A3600 /* frog_v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frog_v2.png; sourceTree = "<group>"; };
 		A16928D9185E88E400D2A8E5 /* ZappieToad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZappieToad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16928DC185E88E400D2A8E5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A16928DE185E88E400D2A8E5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -118,11 +125,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		77D28E3D185EA98D0096A0D6 /* Entitys */ = {
+		A1361ED5185ECAD8005A3600 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				A1361ED6185ECAD8005A3600 /* ZTFrog.h */,
+				A1361ED7185ECAD8005A3600 /* ZTFrog.m */,
 			);
-			name = Entitys;
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A1361EDF185ECB01005A3600 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A1361EE0185ECB01005A3600 /* Entities */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		A1361EE0185ECB01005A3600 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A1361EE1185ECB01005A3600 /* frog_v2-hd.png */,
+				A1361EE2185ECB01005A3600 /* frog_v2.png */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		A16928D0185E88E400D2A8E5 = {
@@ -163,7 +189,8 @@
 		A16928F0185E88E400D2A8E5 /* ZappieToad */ = {
 			isa = PBXGroup;
 			children = (
-				77D28E3D185EA98D0096A0D6 /* Entitys */,
+				A1361EDF185ECB01005A3600 /* Assets */,
+				A1361ED5185ECAD8005A3600 /* Entities */,
 				A173D808185E91EC00B9D4FA /* Scenes */,
 				A1692A81185E88E600D2A8E5 /* AppDelegate.h */,
 				A1692A82185E88E600D2A8E5 /* AppDelegate.m */,
@@ -304,12 +331,14 @@
 				A1692903185E88E400D2A8E5 /* Icon.png in Resources */,
 				A16928F5185E88E400D2A8E5 /* Default@2x.png in Resources */,
 				A16928FF185E88E400D2A8E5 /* Icon-Small.png in Resources */,
+				A1361EE3185ECB01005A3600 /* frog_v2-hd.png in Resources */,
 				A16928FB185E88E400D2A8E5 /* Icon-72.png in Resources */,
 				A16928F3185E88E400D2A8E5 /* Default.png in Resources */,
 				A16928FD185E88E400D2A8E5 /* Icon-Small-50.png in Resources */,
 				A1692908185E88E400D2A8E5 /* iTunesArtwork in Resources */,
 				A1692901185E88E400D2A8E5 /* Icon-Small@2x.png in Resources */,
 				A16928F9185E88E400D2A8E5 /* Default-Landscape~ipad.png in Resources */,
+				A1361EE4185ECB01005A3600 /* frog_v2.png in Resources */,
 				A16928F7185E88E400D2A8E5 /* Default-568h@2x.png in Resources */,
 				A1692905185E88E400D2A8E5 /* Icon@2x.png in Resources */,
 			);
@@ -329,6 +358,7 @@
 				A173D80D185E923500B9D4FA /* ZTSampleLayer.m in Sources */,
 				A1692A80185E88E600D2A8E5 /* main.m in Sources */,
 				A1692A86185E88E600D2A8E5 /* HelloWorldLayer.m in Sources */,
+				A1361ED8185ECAD8005A3600 /* ZTFrog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
