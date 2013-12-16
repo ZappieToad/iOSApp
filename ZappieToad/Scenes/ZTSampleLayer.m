@@ -14,10 +14,29 @@
 {
     CCScene *scene = [CCScene node];
     ZTSampleLayer *layer = [ZTSampleLayer node];
-    
+
     [scene addChild:layer];
-    
+
     return scene;
+}
+
+- (id)init
+{
+    if ((self = [super init]) == nil) {
+        return nil;
+    }
+
+    CCSprite *sprite = [CCSprite spriteWithFile:@"Icon.png"];
+    sprite.position = CGPointMake(240, 160);
+    [self addChild:sprite];
+    
+    CCFiniteTimeAction *move1 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(40, 160)];
+    CCFiniteTimeAction *move2 = [CCMoveTo actionWithDuration:1.0 position:CGPointMake(440, 160)];
+    CCSequence *sequene = [CCSequence actions:move1, move2, nil];
+    CCRepeatForever *repeat = [CCRepeatForever actionWithAction:sequene];
+    [sprite runAction:repeat];
+
+    return self;
 }
 
 - (void)dealloc
