@@ -7,6 +7,7 @@
 //
 
 #import "ZTSampleLayer.h"
+#import "ZTGrid.h"
 
 @implementation ZTSampleLayer
 
@@ -35,7 +36,14 @@
     CCSequence *sequene = [CCSequence actions:move1, move2, nil];
     CCRepeatForever *repeat = [CCRepeatForever actionWithAction:sequene];
     [sprite runAction:repeat];
+    
+    CCRotateBy *rotate = [CCRotateBy actionWithDuration:2.0 angle:300];
+    [sprite runAction:[CCRepeatForever actionWithAction:rotate]];
 
+    ZTGrid *grid = [ZTGrid node];
+    grid.position = CGPointMake(0,0);
+    [self addChild:grid];
+    
     return self;
 }
 

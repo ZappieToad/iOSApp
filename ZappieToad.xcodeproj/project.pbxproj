@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77D28E42185EB1680096A0D6 /* ZTGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D28E41185EB1680096A0D6 /* ZTGrid.m */; };
+		77D28E45185EB1F10096A0D6 /* ZTGridIntersectPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D28E44185EB1F10096A0D6 /* ZTGridIntersectPoint.m */; };
 		A16928DD185E88E400D2A8E5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16928DC185E88E400D2A8E5 /* QuartzCore.framework */; };
 		A16928DF185E88E400D2A8E5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16928DE185E88E400D2A8E5 /* OpenGLES.framework */; };
 		A16928E1185E88E400D2A8E5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16928E0185E88E400D2A8E5 /* OpenAL.framework */; };
@@ -54,6 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		77D28E40185EB0C90096A0D6 /* ZTGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTGrid.h; sourceTree = "<group>"; };
+		77D28E41185EB1680096A0D6 /* ZTGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTGrid.m; sourceTree = "<group>"; };
+		77D28E43185EB1E20096A0D6 /* ZTGridIntersectPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTGridIntersectPoint.h; sourceTree = "<group>"; };
+		77D28E44185EB1F10096A0D6 /* ZTGridIntersectPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTGridIntersectPoint.m; sourceTree = "<group>"; };
 		A16928D9185E88E400D2A8E5 /* ZappieToad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZappieToad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A16928DC185E88E400D2A8E5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A16928DE185E88E400D2A8E5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -112,6 +118,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77D28E3D185EA98D0096A0D6 /* Entitys */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Entitys;
+			sourceTree = "<group>";
+		};
 		A16928D0185E88E400D2A8E5 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +163,7 @@
 		A16928F0185E88E400D2A8E5 /* ZappieToad */ = {
 			isa = PBXGroup;
 			children = (
+				77D28E3D185EA98D0096A0D6 /* Entitys */,
 				A173D808185E91EC00B9D4FA /* Scenes */,
 				A1692A81185E88E600D2A8E5 /* AppDelegate.h */,
 				A1692A82185E88E600D2A8E5 /* AppDelegate.m */,
@@ -205,6 +219,10 @@
 			children = (
 				A173D80B185E923500B9D4FA /* ZTSampleLayer.h */,
 				A173D80C185E923500B9D4FA /* ZTSampleLayer.m */,
+				77D28E40185EB0C90096A0D6 /* ZTGrid.h */,
+				77D28E41185EB1680096A0D6 /* ZTGrid.m */,
+				77D28E43185EB1E20096A0D6 /* ZTGridIntersectPoint.h */,
+				77D28E44185EB1F10096A0D6 /* ZTGridIntersectPoint.m */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -305,6 +323,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1692A83185E88E600D2A8E5 /* AppDelegate.m in Sources */,
+				77D28E42185EB1680096A0D6 /* ZTGrid.m in Sources */,
+				77D28E45185EB1F10096A0D6 /* ZTGridIntersectPoint.m in Sources */,
 				A1692A89185E88E600D2A8E5 /* IntroLayer.m in Sources */,
 				A173D80D185E923500B9D4FA /* ZTSampleLayer.m in Sources */,
 				A1692A80185E88E600D2A8E5 /* main.m in Sources */,
