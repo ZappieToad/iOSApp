@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "ZTFrogDefinitions.h"
+
+// Forward declaration for ZTGridIntersectPoint
+@class ZTGridIntersectPoint;
 
 @interface ZTGrid : CCNode 
 // Property
@@ -18,5 +22,8 @@
 @property (nonatomic, retain) NSMutableArray *lowerBounds;
 
 -(CGPoint)returnHomeBoundsPoint;
+- (bool)getGridIndicesForPoint:(CGPoint)point outX:(out float)x outY:(out float)y;
+
+- (ZTGridIntersectPoint *)intersectionAtPosition:(CGPoint)position;
 
 @end

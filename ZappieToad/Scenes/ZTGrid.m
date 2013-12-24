@@ -45,6 +45,7 @@
             {
                 intersection = [[ZTGridIntersectPoint alloc] init];
                 intersection.position = CGPointMake(x*xWidth + xSeed, y*yWidth + ySeed);
+                intersection.gridXY = (ZTGridXY){x, y};
                 
                 // Colorize them based on homeBounds & outerBounds
                 if ((y>4 && y<9) &&
@@ -52,9 +53,13 @@
                 {
                     intersection.sprite.color = ccRED;
                     
+                    // FIgure out the possible transition positions
+                    if (y==5) { intersection.upPossible = false; }
+                    if (y==8) { intersection.downPossible = false; }
+                    if (x==8) { intersection.leftPossible = false; }
+                    if (x==11){ intersection.rightPossible= false; }
+                    
                     // This is also where I add to the list of possible positions
-                 //   ZTGridPoint *point = [[ZTGridPoint alloc] init];
-                   // point.point = CGPointMake(0, 0);
                     [self.homeBounds addObject:intersection];
                 }
                 else {
@@ -82,11 +87,36 @@
     return self;
 }
 
+
+-(CGPoint)tryAndReturnTargetMove
+{
+    int index = arc4random() % self.homeBounds.count;
+    ZTGridIntersectPoint *point = self.homeBounds[index];
+    return point.position;
+}
+
 -(CGPoint)returnHomeBoundsPoint
 {
     int index = arc4random() % self.homeBounds.count;
     ZTGridIntersectPoint *point = self.homeBounds[index];
     return point.position;
+}
+
+- (ZTGridIntersectPoint *)intersectionAtPosition:(CGPoint)position
+{
+    for (ZTGridIntersectPoint *point in self.homeBounds) {
+        CGSize size = CGSizeMake(30, 30);
+        CGPoint pos = point.boundingBox.origin;
+        CGRect rect = CGRectMake(pos.x-15, pos.y-15, size.width, size.height);
+        NSLog(@"Position: %f, %f; Size: %f, %f", pos.x, pos.y, size.width, size.height);
+//        position = [[CCDirector sharedDirector] convertToGL:position];
+//        position = CGPointApplyAffineTransform(position, self.worldToNodeTransform);
+        if (CGRectContainsPoint(rect, position)) {
+            return point;
+        }
+    }
+
+    return nil;
 }
 
 @end

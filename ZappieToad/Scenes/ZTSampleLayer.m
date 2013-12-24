@@ -9,7 +9,10 @@
 #import "ZTSampleLayer.h"
 #import "ZTFrog.h"
 #import "ZTGrid.h"
+#import "ZTGridIntersectPoint.h"
 #import "ZTFrogTongue.h"
+#import "ZTFrogTongue2.h"
+#import "ZTPolygonNode.h"
 
 @implementation ZTSampleLayer
 
@@ -43,20 +46,22 @@
 //    [sprite runAction:[CCRepeatForever actionWithAction:rotate]];
 
     ZTGrid *grid = [ZTGrid node];
-//    [self addChild:grid];
+    [self addChild:grid];
+    self.gameGrid = grid;
 
     self.frog = [[ZTFrog alloc] init];
     self.frog.position = [grid returnHomeBoundsPoint];// CGPointMake(240, 160);
+    self.frog.gridXY = [grid intersectionAtPosition:self.frog.position].gridXY;
     [self addChild:self.frog];
     
-    ZTFrogTongue *tongue = [[ZTFrogTongue alloc] init];
-    tongue.position = ccp(self.frog.position.x, self.frog.position.y + 10);
-    tongue.direction = kZTDirectionRight;
-    tongue.speed = 0.5;
-    [self addChild:tongue];
-    [tongue fire];
-
-    [self scheduleOnce:@selector(jump) delay:3.0];
+    
+//    ZTGridXY xy = {3, 5};
+//    [self.frog jumpToGridXY:xy withCompletionBlock:^(ZTFrog *frog) {
+//        // Fire
+//        [self.frog fireInDirection:kZTDirectionRight withCompletionBlock:^(ZTFrog *frog) {
+//            // Nothing to do here for now
+//        }];
+//    }];
 
     return self;
 }
@@ -88,16 +93,65 @@
     CGPoint point = [touch locationInView:touch.view];
     point = [[CCDirector sharedDirector] convertToGL:point];
 
-    CCSprite *sprite = [CCSprite spriteWithFile:@"frog_v2.png"];
-    sprite.position = point;
-    [self addChild:sprite];
-    CCLOG(@"%f; %f;", sprite.position.x, sprite.position.y);
+//    CCSprite *sprite = [CCSprite spriteWithFile:@"frog_v2.png"];
+  //  sprite.position = point;
+    //[self addChild:sprite];
+    //CCLOG(@"%f; %f;", sprite.position.x, sprite.position.y);
+    
+    // Check and move appropriately
+//    [self checkTouchAndMove:point];
+    
+    NSLog(@"Touch: %f, %f", point.x, point.y);
+//    NSLog(@"Point: %f, %f", self.frog.position.x, self.frog.position.y);
+    
+    ZTGridIntersectPoint *intersectPoint = [self.gameGrid intersectionAtPosition:point];
+    if (intersectPoint != nil) {
+        [self.frog jumpToGridXY:intersectPoint.gridXY
+            withCompletionBlock:^(ZTFrog *frog) {
+                // Fire the tongue!
+                [self.frog fireInDirection:kZTDirectionRight withCompletionBlock:nil];
+            }];
+    }
     return false;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    // Get the point on release
+    CGPoint point = [touch locationInView:touch.view];
+    point = [[CCDirector sharedDirector] convertToGL:point];
+    
+    CGPoint target;
+    ZTDirection dir;// = [ZTDirection ];
+    dir = kZTDirectionLeft;
+    if (point.x < 200) { [self.frog jumpInDirection:dir withCompletionBlock:nil]; }//target = [grid TryLeft]; }
+    
     return;
 }
 
+-(void)checkTouchAndMove:(CGPoint) point
+{
+    ZTDirection dir;
+    
+    if (point.y < 100)
+    {
+        dir = kZTDirectionDown;
+        [self.frog jumpInDirection:dir withCompletionBlock:nil];
+    }
+    else if (point.y > 200)
+    {
+        dir = kZTDirectionUp;
+        [self.frog jumpInDirection:dir withCompletionBlock:nil];
+    }
+    else if (point.x < 180)
+    {
+        dir = kZTDirectionLeft;
+        [self.frog jumpInDirection:dir withCompletionBlock:nil];
+    }
+    else if (point.x > 280)
+    {
+        dir = kZTDirectionRight;
+        [self.frog jumpInDirection:dir withCompletionBlock:nil];
+    }
+}
 @end

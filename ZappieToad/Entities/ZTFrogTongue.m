@@ -119,4 +119,30 @@
     [m_oTongueBody runAction:[CCSequence actions:a1, a2, a3, nil]];
 }
 
+/**
+ * Instead of scaling a sprite, we can animate a quad,
+ * draw it with a red texture on and display using opengl.
+ *
+ */
+- (void)drawTongueAsQuad
+{
+    float x = self.position.x;
+    float y = self.position.y;
+    float size = 2.5;
+
+    float coords[] = {
+        x, y+size,
+        x, y-size,
+        x-10, y-size,
+        x-10, y+size,
+    };
+    
+    CGPoint vertices[] = {
+        ccp(x, y+size),
+        ccp(x, y-size),
+        ccp(x-10, y-size),
+        ccp(x-10, y+size)
+    };
+}
+
 @end

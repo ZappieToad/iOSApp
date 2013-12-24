@@ -9,9 +9,11 @@
 #import "cocos2d.h"
 
 @class ZTFrog;
+@class ZTGrid;
 
 @interface ZTSampleLayer : CCLayer <CCTouchOneByOneDelegate>
 
+@property (nonatomic, retain) ZTGrid *gameGrid;
 @property (nonatomic, retain) ZTFrog *frog;
 
 + (CCScene *)scene;

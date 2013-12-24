@@ -18,10 +18,14 @@
     
     self.sprite = [CCSprite spriteWithFile:@"Icon.png"];
     self.sprite.scale = 0.25f;
-//    self.sprite.color = ccRED;
-    //    sprite.position = CGPointMake(240, 160);
+    
     [self addChild:self.sprite];
     
+    //
+    self.upPossible = true;
+    self.downPossible = true;
+    self.leftPossible = true;
+    self.rightPossible= true;
     
     // This is the property
   //  self.sprite = nil;
